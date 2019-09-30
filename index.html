@@ -28,9 +28,9 @@
             <hr>
             <div id="musicControls" class="text-center">
                 <button class="btn btn-warning btn-xs theme-button">
-          <span class="fa fa-music"></span> Play Theme!</button>
+            <span class="fa fa-music"></span> Play Theme!</button>
                 <button class="btn btn-dark btn-xs pause-button">
-          <span class="fa fa-pause"></span> Pause Song</button>
+            <span class="fa fa-pause"></span> Pause Song</button>
             </div>
 
         </div>
@@ -44,11 +44,11 @@
                     <div class="card-body">
                         <div class="text-center">
                             <button class="btn btn-dark btn-lg normal-button">
-                <span class="fa fa-ok"></span> Normal</button>
+                  <span class="fa fa-ok"></span> Normal</button>
                             <button class="btn btn-primary btn-lg grow-button">
-                <span class="fa fa-plus"></span> Grow</button>
+                  <span class="fa fa-plus"></span> Grow</button>
                             <button class="btn btn-danger btn-lg shrink-button">
-                <span class="fa fa-minus"></span> Shrink</button>
+                  <span class="fa fa-minus"></span> Shrink</button>
                         </div>
                     </div>
                 </div>
@@ -59,9 +59,9 @@
                     <div class="card-body">
                         <div class="text-center">
                             <button class="btn btn-dark btn-lg vis-button">
-                <span class="fa fa-eye"></span> Visible</button>
+                  <span class="fa fa-eye"></span> Visible</button>
                             <button class="btn btn-info btn-lg invis-button">
-                <span class="fa fa-eye-slash"></span> Invisible</button>
+                  <span class="fa fa-eye-slash"></span> Invisible</button>
                         </div>
                     </div>
                 </div>
@@ -72,9 +72,9 @@
                     <div class="card-body">
                         <div class="text-center">
                             <button class="btn btn-dark btn-lg unstretch-btn">
-                <span class="fa fa-compress"></span> Normal</button>
+                  <span class="fa fa-compress"></span> Normal</button>
                             <button class="btn btn-primary btn-lg stretch-btn">
-                <span class="fa fa-expand"></span> Stretch</button>
+                  <span class="fa fa-expand"></span> Stretch</button>
                         </div>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
                         <br>
                         <div class="text-center">
                             <button class="btn btn-dark btn-lg back-button">
-                <span class="fa fa-comment"></span> Go Planet!</button>
+                  <span class="fa fa-comment"></span> Go Planet!</button>
                         </div>
                     </div>
                 </div>
@@ -108,25 +108,135 @@
             </div>
         </div>
     </div>
+
     <script>
+        // JavaScript function that wraps everything
         $(document).ready(function() {
 
-            // visibility buttons
+            var captainPlanet = $(".captain-planet");
 
-            $(".invis-button").on("click", function() {
-                $(".captain-planet").animate({
-                    opacity: "0.1"
+            // Gets Link for Theme Song
+            var audioElement = document.createElement("audio");
+            audioElement.setAttribute("src", "assets/captainplanet24.mp3");
+
+            // Theme Button
+            $(".theme-button").on("click", function() {
+                audioElement.play();
+            });
+            $(".pause-button").on("click", function() {
+                audioElement.pause();
+            });
+
+            // Size Buttons
+            $(".normal-button").on("click", function() {
+                captainPlanet.animate({
+                    height: "300px"
+                });
+            });
+            $(".grow-button").on("click", function() {
+                captainPlanet.animate({
+                    height: "500px"
+                });
+            });
+            $(".shrink-button").on("click", function() {
+                captainPlanet.animate({
+                    height: "100px"
                 });
             });
 
+            // Visibility Buttons
             $(".vis-button").on("click", function() {
-                $(".captain-planet").animate({
-                    opacity: "100"
+                captainPlanet.animate({
+                    opacity: "1"
+                });
+            });
+            $(".invis-button").on("click", function() {
+                captainPlanet.animate({
+                    opacity: "0.05"
                 });
             });
 
+            // Stretch Buttons
+            $(".stretch-btn").on("click", function() {
+                captainPlanet.animate({
+                    height: "1000px",
+                    width: "200px"
+                });
+            });
+            $(".unstretch-btn").on("click", function() {
+                captainPlanet.animate({
+                    height: "300px",
+                    width: "450px"
+                });
+            });
+
+            // Move Buttons
+            $(".up-button").on("click", function() {
+                captainPlanet.animate({
+                    top: "-=200px"
+                }, "normal");
+            });
+            $(".down-button").on("click", function() {
+                captainPlanet.animate({
+                    top: "+=200px"
+                }, "normal");
+            });
+            $(".left-button").on("click", function() {
+                captainPlanet.animate({
+                    left: "-=200px"
+                }, "normal");
+            });
+            $(".right-button").on("click", function() {
+                captainPlanet.animate({
+                    left: "+=200px"
+                }, "normal");
+            });
+            $(".back-button").on("click", function() {
+                captainPlanet.animate({
+                    top: "50px",
+                    left: "80px"
+                }, "fast");
+            });
+
+            // Keyboard move controls
+            $(document).keyup(function(e) {
+                switch (e.which) {
+
+                    // Move Buttons (Keyboard Down)
+                    case 40:
+                        captainPlanet.animate({
+                            top: "+=200px"
+                        }, "normal");
+                        break;
+
+                        // Move Buttons (Keyboard Right)
+                    case 39:
+                        captainPlanet.animate({
+                            left: "+=200px"
+                        }, "normal");
+                        break;
+
+                        // Move Buttons (Keyboard Up)
+                    case 38:
+                        captainPlanet.animate({
+                            top: "-=200px"
+                        }, "normal");
+                        break;
+
+                        // Move Buttons (Keyboard Left)
+                    case 37:
+                        captainPlanet.animate({
+                            left: "-=200px"
+                        }, "normal");
+                        break;
+
+                    default:
+                        break;
+                }
+            });
         });
     </script>
+
 </body>
 
 </html>
